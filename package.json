@@ -1,0 +1,33 @@
+{
+  "name": "ast-graph-db",
+  "version": "1.0.0",
+  "description": "High-Performance AST-Powered Codebase Knowledge Graph & Static Analysis DB",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "ast-graph-db": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "node --test dist/**/*.test.js",
+    "start": "node dist/cli.js",
+    "dev": "tsc -w"
+  },
+  "keywords": [
+    "ast",
+    "graph-database",
+    "tree-sitter",
+    "static-analysis",
+    "knowledge-graph",
+    "code-analysis",
+    "callgraph",
+    "symbol-table",
+    "cypher"
+  ],
+  "author": "koushik4475 <koushik4475@gmail.com>",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.5.0"
+  }
+}

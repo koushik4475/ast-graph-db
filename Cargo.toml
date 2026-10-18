@@ -1,0 +1,34 @@
+[package]
+name = "ast-graph-db"
+version = "1.0.0"
+edition = "2021"
+authors = ["koushik4475 <koushik4475@gmail.com>"]
+description = "High-Performance AST-Powered Codebase Knowledge Graph & Static Analysis DB in Rust"
+license = "Apache-2.0"
+repository = "https://github.com/ER-brocode/ast-graph-db"
+readme = "README.md"
+keywords = ["ast", "tree-sitter", "knowledge-graph", "static-analysis", "cypher"]
+categories = ["development-tools", "database-implementations"]
+
+[lib]
+name = "ast_graph_db"
+path = "rust-core/src/lib.rs"
+
+[[bin]]
+name = "ast-graph-db"
+path = "rust-core/src/main.rs"
+
+[dependencies]
+tree-sitter = "0.22"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+petgraph = { version = "0.6", features = ["serde-1"] }
+regex = "1.10"
+rayon = "1.10"
+clap = { version = "4.5", features = ["derive"] }
+thiserror = "1.0"
+tracing = "0.1"
+tracing-subscriber = "0.3"
+
+[dev-dependencies]
+tempfile = "3.10"
