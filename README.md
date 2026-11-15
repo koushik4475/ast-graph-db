@@ -1,6 +1,9 @@
 <div align="center">
 
-# ⚡ `ast-graph-db`
+# AST Graph DB | Codebase Knowledge Graph, AST Indexing and Static Analysis
+
+AST Graph DB is a code-analysis and knowledge-graph project that parses source code into relationships such as classes, functions, inheritance, and call references. Its TypeScript and Rust components are documented alongside examples for exploring code structure across supported programming languages. It is useful for developers building code navigation, repository intelligence, static analysis, and AI-assisted code-understanding tools.
+
 
 ### *AST-Powered Codebase Knowledge Graph & Static Analysis DB in TypeScript & Rust*
 
