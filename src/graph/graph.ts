@@ -77,6 +77,10 @@ export class CodebaseGraph {
         const edge = this.edges.get(edgeId);
         if (edge) {
           this.inEdgesIndex.get(edge.targetId)?.delete(edgeId);
+          const targetNode = this.nodes.get(edge.targetId);
+          if (targetNode) {
+            targetNode.metadata.inDegree = Math.max(0, targetNode.metadata.inDegree - 1);
+          }
           this.edges.delete(edgeId);
         }
       }
@@ -90,6 +94,10 @@ export class CodebaseGraph {
         const edge = this.edges.get(edgeId);
         if (edge) {
           this.outEdgesIndex.get(edge.sourceId)?.delete(edgeId);
+          const sourceNode = this.nodes.get(edge.sourceId);
+          if (sourceNode) {
+            sourceNode.metadata.outDegree = Math.max(0, sourceNode.metadata.outDegree - 1);
+          }
           this.edges.delete(edgeId);
         }
       }
@@ -133,6 +141,23 @@ export class CodebaseGraph {
       properties: edge.properties || {},
       weight: edge.weight ?? 1.0,
     };
+
+    // Replacing an existing edge ID must first undo its old index and degree
+    // contributions; otherwise repeated indexing inflates graph statistics.
+    const previousEdge = this.edges.get(id);
+    if (previousEdge) {
+      this.outEdgesIndex.get(previousEdge.sourceId)?.delete(id);
+      this.inEdgesIndex.get(previousEdge.targetId)?.delete(id);
+
+      const previousSource = this.nodes.get(previousEdge.sourceId);
+      if (previousSource) {
+        previousSource.metadata.outDegree = Math.max(0, previousSource.metadata.outDegree - 1);
+      }
+      const previousTarget = this.nodes.get(previousEdge.targetId);
+      if (previousTarget) {
+        previousTarget.metadata.inDegree = Math.max(0, previousTarget.metadata.inDegree - 1);
+      }
+    }
 
     this.edges.set(id, fullEdge);
 
