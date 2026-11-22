@@ -5,6 +5,6 @@ pub mod parser;
 pub mod graph;
 pub mod query;
 
-pub use parser::{ASTParser, SourceSpan, ExtractedSymbol, SupportedLanguage};
+pub use parser::{ASTParser, SourceSpan, ExtractedSymbol, SupportedLanguage, SymbolKind};
 pub use graph::{CodebaseGraph, GraphNode, GraphEdge, NodeKind, EdgeKind};
 pub use query::QueryEngine;
