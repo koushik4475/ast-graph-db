@@ -189,7 +189,12 @@ export class GraphIndexer {
         // Skip excluded directories / files
         const isExcluded = excludes.some((exc) => {
           if (typeof exc === 'string') return relativeName === exc;
-          return exc.test(relativeName);
+          // Global and sticky regexes retain lastIndex between test() calls.
+          // Reset it so every directory entry is checked from the start.
+          exc.lastIndex = 0;
+          const matches = exc.test(relativeName);
+          exc.lastIndex = 0;
+          return matches;
         });
         if (isExcluded) continue;
 
